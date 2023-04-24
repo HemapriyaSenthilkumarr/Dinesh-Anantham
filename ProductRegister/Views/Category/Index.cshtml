@@ -1,0 +1,70 @@
+﻿<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
+<script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+@model IEnumerable<CategoryModel>
+
+<h1>Product Category</h1>
+<script>
+    $(document).ready(function () {
+        $('#product').DataTable({
+            pageLength: 10,
+            filter: true
+                    deferRender: true,
+            scrollY: 200,
+            scrollCollapse: true,
+            scroller: true
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+    $('#dataTable').DataTable({
+        pageLength: 10,
+        filter: true
+        deferRender: true,
+        scrollY: 200,
+        scrollCollapse: true,
+        scroller: true
+    });
+</script>
+
+<table id="product" class="display searchable sortable table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr class="item">
+                <td width="25%">
+                    @obj.ProductName
+                </td>
+                <td width="35%">
+                    @obj.Description
+                </td>
+                <td width="25%">
+                    @obj.Category
+                </td>
+                <td width="15%">
+                    @obj.Price
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
